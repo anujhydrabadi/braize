@@ -1,0 +1,10 @@
+{
+  "$schema": "https://docs.facets.cloud/schemas/features.schema",
+  "spec": {
+    "choas_testing": false,
+    "pmm": false,
+    "newrelic_infra_monitoring": false,
+    "pod_dumps_archival": false,
+    "spot_fleet": true
+  }
+}
