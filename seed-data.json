@@ -1,0 +1,18 @@
+[
+{
+  "intent": "mysql",
+  "flavor": "aurora",
+  "version": "1.0",
+  "gitUrl": "https://github.com/user/repo.git",
+  "gitRef": "master",
+  "relativePath": "./"
+},
+  {
+  "intent": "postgres",
+  "flavor": "rds",
+  "version": "1.0",
+  "gitUrl": "https://github.com/user/repo.git",
+  "gitRef": "master",
+  "relativePath": "./"
+}
+]
