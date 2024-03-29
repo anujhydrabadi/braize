@@ -1,0 +1,31 @@
+spec:
+  $schema: http://json-schema.org/draft-07/schema#
+  title: Create New Project
+  type: object
+  properties:
+    projectName:
+      type: string
+      title: Project Name
+      description: What should we call your project?
+    description:
+      type: string
+      title: Description
+      description: What is your project about? Tell us more.
+    cloudPlatform:
+      type: string
+      title: Picked a cloud yet?
+      description: Where will your project come to life? Choose your cloud platform.
+      enum:
+        - AWS
+        - Google Cloud
+        - Azure
+        - Other
+    gitOpsEnabled:
+      type: boolean
+      title: FYI
+      description: Boost your project with GitOps. Enhance automation and consistency with this smart feature. Dive into your project settings to enable it!
+  required:
+    - projectName
+    - description
+    - cloudPlatform
+    
