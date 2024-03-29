@@ -3,7 +3,7 @@
   "intent": "mysql",
   "flavor": "aurora",
   "version": "1.0",
-  "gitUrl": "https://github.com/user/repo.git",
+  "gitUrl": "https://github.com/anujhydrabadi/braize",
   "gitRef": "master",
   "relativePath": "./"
 },
@@ -11,7 +11,7 @@
   "intent": "postgres",
   "flavor": "rds",
   "version": "1.0",
-  "gitUrl": "https://github.com/user/repo.git",
+  "gitUrl": "https://github.com/anujhydrabadi/braize",
   "gitRef": "master",
   "relativePath": "./"
 }
