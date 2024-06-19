@@ -10,7 +10,7 @@ spec:
     description:
       type: string
       title: Description
-      description: What is your project about? Tell us more.
+      description: What is your project about? Tell us more...
     cloudPlatform:
       type: string
       title: Picked a cloud yet?
