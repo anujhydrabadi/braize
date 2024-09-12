@@ -89,7 +89,7 @@ fi
 echo "Determined RUN_ID: $RUN_ID"
 
 # Path to facetsctl binary
-BIN_PATH="$(which facetsctl)"
+BIN_PATH="$HOME/facetsctl/bin/facetsctl"
 echo "Bin path: $BIN_PATH"
 
 # Ensure facetsctl is executable
