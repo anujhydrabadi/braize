@@ -32,6 +32,15 @@ do
     esac
 done
 
+# Print parsed command-line options
+echo "Parsed Command-Line Options:"
+echo "USERNAME: $USERNAME"
+echo "CP_URL: $CP_URL"
+echo "PROJECT_NAME: $PROJECT_NAME"
+echo "SERVICE_NAME: $SERVICE_NAME"
+echo "ARTIFACTORY_NAME: $ARTIFACTORY_NAME"
+echo "IS_PUSH: $IS_PUSH"
+
 # Ensure all critical environment variables are set
 if [[ -z "$DOCKER_IMAGE_URL" || -z "$TOKEN" ]]; then
     echo "Critical environment variables DOCKER_IMAGE_URL or TOKEN are not set."
@@ -58,6 +67,9 @@ if [ -z "$GIT_REF" ]; then
     fi
 fi
 
+# Print determined GIT_REF
+echo "Determined GIT_REF: $GIT_REF"
+
 # Determine RUN_ID based on CI/CD environment variables if not set
 if [ -z "$RUN_ID" ]; then
     if [ ! -z "$GITHUB_RUN_ID" ]; then
@@ -73,6 +85,9 @@ if [ -z "$RUN_ID" ]; then
     fi
 fi
 
+# Print determined RUN_ID
+echo "Determined RUN_ID: $RUN_ID"
+
 # Path to facetsctl binary
 BIN_PATH="$(which facetsctl)"
 
@@ -83,6 +98,7 @@ if [ ! -x "$BIN_PATH" ]; then
 fi
 
 # Print all variable values
+echo "Final Variable Values:"
 echo "Username: $USERNAME"
 echo "CP_URL: $CP_URL"
 echo "Project Name: $PROJECT_NAME"
@@ -96,33 +112,41 @@ echo "RUN_ID: $RUN_ID"
 echo "Bin Path: $BIN_PATH"
 
 # Login using facetsctl
+echo "Logging in using facetsctl..."
 $BIN_PATH login -u "$USERNAME" -t "$TOKEN" -f "$CP_URL"
 if [ $? -ne 0 ]; then
     echo "facetsctl login failed."
     exit 1
 fi
+echo "facetsctl login succeeded."
 
 # Initialize artifact
+echo "Initializing artifact..."
 $BIN_PATH artifact init -p "$PROJECT_NAME" -s "$SERVICE_NAME" -a "$ARTIFACTORY_NAME"
 if [ $? -ne 0 ]; then
     echo "facetsctl artifact init failed."
     exit 1
 fi
+echo "facetsctl artifact init succeeded."
 
 # Push artifact if required
 if [ "$IS_PUSH" == "true" ]; then
+    echo "Pushing artifact..."
     $BIN_PATH artifact push -d "$DOCKER_IMAGE_URL"
     if [ $? -ne 0 ]; then
         echo "facetsctl artifact push failed."
         exit 1
     fi
+    echo "facetsctl artifact push succeeded."
 fi
 
 # Register artifact
+echo "Registering artifact..."
 $BIN_PATH artifact register -t GIT_REF -v "$GIT_REF" -i "$DOCKER_IMAGE_URL" -r "$RUN_ID"
 if [ $? -ne 0 ]; then
     echo "facetsctl artifact register failed."
     exit 1
 fi
+echo "facetsctl artifact register succeeded."
 
 echo "facetsctl operations completed."
