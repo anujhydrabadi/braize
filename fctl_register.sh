@@ -90,6 +90,7 @@ echo "Determined RUN_ID: $RUN_ID"
 
 # Path to facetsctl binary
 BIN_PATH="$(which facetsctl)"
+echo "Bin path: $BIN_PATH"
 
 # Ensure facetsctl is executable
 if [ ! -x "$BIN_PATH" ]; then
