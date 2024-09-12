@@ -3,11 +3,20 @@
 # Exit immediately if a command exits with a non-zero status.
 set -e
 
-# Default values for environment variables
-DOCKER_IMAGE_URL=${DOCKER_IMAGE_URL:-nginx:latest}
-TOKEN=${TOKEN:-8c2ad1b3-d18c-4e71-86dd-273660a14a4c}
+# Print initial script information
+echo "Starting script execution..."
+
+# Default values for environment variables (removed defaults)
+# DOCKER_IMAGE_URL=${DOCKER_IMAGE_URL:-nginx:latest}
+# TOKEN=${TOKEN:-8c2ad1b3-d18c-4e71-86dd-273660a14a4c}
 # GIT_REF=${GIT_REF:-test123}
 RUN_ID=${RUN_ID:-}
+
+# Print initial environment variable values
+echo "Initial Environment Variables:"
+echo "DOCKER_IMAGE_URL: $DOCKER_IMAGE_URL"
+echo "TOKEN: $TOKEN"
+echo "RUN_ID: $RUN_ID"
 
 # Parse command-line options
 while getopts u:c:p:s:a:i: flag
